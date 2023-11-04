@@ -15,7 +15,12 @@ public class Pattern13 {
                 j++;
             }
             row++;
-            star++;
+            if(row > n){
+                star--;
+            }
+            else{
+                star++;
+            }
             System.out.println();
         }
     }
