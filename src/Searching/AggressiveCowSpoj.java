@@ -17,7 +17,7 @@ public class AggressiveCowSpoj {
     }
     public static int minimumDistance(int n, int c, int[] stalls){
         int start = 0;
-        int end = stalls[stalls.length-1] - stalls[0];
+        int end = stalls[n-1] - stalls[0];
         int result = 0;
         while (start <= end){
             int mid = (start+end)/2;
