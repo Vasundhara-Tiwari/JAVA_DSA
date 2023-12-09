@@ -40,7 +40,7 @@ public class AggressiveCowSpoj {
             {
                 cows++;
                 lastCowPosition=stalls[i];
-                if(cows>=c) return true;
+                if(cows==c) return true;
             }
         }
         return false;
