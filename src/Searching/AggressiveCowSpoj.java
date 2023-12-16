@@ -4,6 +4,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class AggressiveCowSpoj {
+
+    //input
+//    5 3
+//            1
+//            2
+//            8
+//            4
+//            9
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
