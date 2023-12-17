@@ -2,9 +2,10 @@ package String;
 
 public class CheckEquality {
     public static void main(String[] args) {
-        String s1 = "hello";
+        String s1 = "Hello";
         String s2 = new String("Hello");
         System.out.println(s1.equals(s2));
+        System.out.println(equal(s1, s2));
     }
     public static boolean equal(String s1, String s2){
         if(s1 == s2){
