@@ -1,10 +1,21 @@
 package Arrays;
 
 import java.util.Arrays;
+import java.util.Scanner;
+
 public class TrappingRainWater {
     public static void main(String[] args) {
-        int[] arr = {7, 3, 1, 6, 3, 8, 5, 4};
-        System.out.println(trap(arr));
+        Scanner scanner = new Scanner(System.in);
+        int testCases = scanner.nextInt();
+        while(testCases > 0){
+            int size = scanner.nextInt();
+            int[] arr = new int[size];
+            for(int i = 0; i < size; i++){
+                arr[i] = scanner.nextInt();
+            }
+            System.out.println(trap(arr));
+            testCases--;
+        }
     }
     public static int trap(int[] height) {
         int[] leftHighest = new int[height.length];
@@ -17,8 +28,6 @@ public class TrappingRainWater {
         for(int i = height.length-2; i >= 0; i--){
             rightHighest[i] = Math.max(rightHighest[i+1], height[i]);
         }
-        System.out.println(Arrays.toString(leftHighest));
-        System.out.println(Arrays.toString(rightHighest));
         int waterTrapped = 0;
         for(int i = 0; i < height.length; i++){
             waterTrapped += (Math.min(leftHighest[i], rightHighest[i]) - height[i]);
