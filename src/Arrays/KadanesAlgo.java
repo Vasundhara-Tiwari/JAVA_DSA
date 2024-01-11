@@ -1,4 +1,5 @@
 package Arrays;
+import java.util.Scanner;
 
 public class KadanesAlgo {
     public static void main(String[] args) {
