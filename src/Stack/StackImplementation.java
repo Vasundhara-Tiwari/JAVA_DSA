@@ -39,7 +39,15 @@ public class StackImplementation {
     }
 
     public int peek(){
-        return stack[index-1];
+        try{
+            if(index < 0){
+                throw new Exception("Stack Underflow!!!");
+            }
+            return stack[index-1];
+        } catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
     }
     public int getSize(){
         return index;
