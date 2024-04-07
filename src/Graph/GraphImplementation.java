@@ -1,9 +1,6 @@
 package Graph;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class GraphImplementation {
     private HashMap<Integer, HashMap<Integer, Integer>> map;
@@ -82,7 +79,7 @@ public class GraphImplementation {
     }
 
     public boolean BFS(int source, int destination){
-        Queue<Integer> q = new LinkedList<Integer>();
+        Queue<Integer> q = new LinkedList<>();
         HashSet<Integer> visited = new HashSet<>();
         q.add(source);
         while (!q.isEmpty()){
@@ -102,6 +99,33 @@ public class GraphImplementation {
             for(int neighbour: map.get(r).keySet()){
                 if (!visited.contains(neighbour)){
                     q.add(neighbour);
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean DFS(int source, int destination){
+        Stack<Integer> stack = new Stack<>();
+        HashSet<Integer> visited = new HashSet<>();
+        stack.push(source);
+        while (!stack.isEmpty()){
+            // 1. remove
+            int r = stack.pop();   // remove first
+            // 2. Ignore if already visited
+            if(visited.contains(r)){
+                continue;
+            }
+            // 3. mark visited
+            visited.add(r);
+            // 4. self work
+            if(r == destination){
+                return true;
+            }
+            // 5. Add neighbour which are unvisited
+            for(int neighbour: map.get(r).keySet()){
+                if (!visited.contains(neighbour)){
+                    stack.push(neighbour);
                 }
             }
         }
