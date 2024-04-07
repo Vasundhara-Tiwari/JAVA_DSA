@@ -1,6 +1,9 @@
 package Graph;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class GraphImplementation {
     private HashMap<Integer, HashMap<Integer, Integer>> map;
@@ -46,5 +49,62 @@ public class GraphImplementation {
         for(int v: map.keySet()){
             System.out.println(v + ": " + map.get(v));
         }
+    }
+
+    public boolean hasPath(int source, int destination, HashSet<Integer> visited){
+        if(source == destination){
+            return true;
+        }
+        visited.add(source);
+        for (int neighbours: map.get(source).keySet()){
+            if(!visited.contains(neighbours)){
+                boolean ans = hasPath(neighbours, destination, visited);
+                if(ans){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void printAllPath(int source, int destination, HashSet<Integer> visited, String ans){
+        if(source == destination){
+            System.out.println(ans+"-->"+destination);
+            return;
+        }
+        visited.add(source);
+        for (int neighbours: map.get(source).keySet()){
+            if(!visited.contains(neighbours)){
+                printAllPath(neighbours, destination, visited, ans+"-->"+source);
+            }
+        }
+        visited.remove(source);
+    }
+
+    public boolean BFS(int source, int destination){
+        Queue<Integer> q = new LinkedList<Integer>();
+        HashSet<Integer> visited = new HashSet<>();
+        q.add(source);
+        while (!q.isEmpty()){
+            // 1. remove
+            int r = q.poll();   // remove first
+            // 2. Ignore if already visited
+            if(visited.contains(r)){
+                continue;
+            }
+            // 3. mark visited
+            visited.add(r);
+            // 4. self work
+            if(r == destination){
+                return true;
+            }
+            // 5. Add neighbour which are unvisited
+            for(int neighbour: map.get(r).keySet()){
+                if (!visited.contains(neighbour)){
+                    q.add(neighbour);
+                }
+            }
+        }
+        return false;
     }
 }

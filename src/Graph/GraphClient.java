@@ -1,5 +1,7 @@
 package Graph;
 
+import java.util.HashSet;
+
 public class GraphClient {
     public static void main(String[] args) {
         GraphImplementation graph = new GraphImplementation(7);
@@ -12,5 +14,8 @@ public class GraphClient {
         graph.addEdge(7, 5, 2);
         graph.addEdge(6, 7, 3);
         graph.display();
+        System.out.println(graph.hasPath(1, 6, new HashSet<>()));
+        graph.printAllPath(1, 6, new HashSet<>(), " ");
+        System.out.println(graph.BFS(1, 6));
     }
 }
