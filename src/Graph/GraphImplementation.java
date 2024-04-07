@@ -131,4 +131,30 @@ public class GraphImplementation {
         }
         return false;
     }
+
+    public void BFT(){
+        Queue<Integer> q = new LinkedList<>();
+        HashSet<Integer> visited = new HashSet<>();
+        for(int source: map.keySet()){
+            q.add(source);
+            while (!q.isEmpty()) {
+                // 1. remove
+                int r = q.poll();   // remove first
+                // 2. Ignore if already visited
+                if (visited.contains(r)) {
+                    continue;
+                }
+                // 3. mark visited
+                visited.add(r);
+                // 4. self work
+                System.out.println(r);
+                // 5. Add neighbour which are unvisited
+                for (int neighbour : map.get(r).keySet()) {
+                    if (!visited.contains(neighbour)) {
+                        q.add(neighbour);
+                    }
+                }
+            }
+        }
+    }
 }

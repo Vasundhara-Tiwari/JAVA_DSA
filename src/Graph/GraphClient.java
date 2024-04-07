@@ -18,5 +18,6 @@ public class GraphClient {
         graph.printAllPath(1, 6, new HashSet<>(), " ");
         System.out.println(graph.BFS(1, 6));
         System.out.println(graph.DFS(1, 6));
+        graph.BFT();
     }
 }
