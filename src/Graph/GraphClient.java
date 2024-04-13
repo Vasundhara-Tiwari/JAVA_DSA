@@ -19,5 +19,7 @@ public class GraphClient {
         System.out.println(graph.BFS(1, 6));
         System.out.println(graph.DFS(1, 6));
         graph.BFT();
+        System.out.println();
+        graph.DFT();
     }
 }

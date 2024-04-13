@@ -136,6 +136,9 @@ public class GraphImplementation {
         Queue<Integer> q = new LinkedList<>();
         HashSet<Integer> visited = new HashSet<>();
         for(int source: map.keySet()){
+            if(visited.contains(source)){
+                continue;
+            }
             q.add(source);
             while (!q.isEmpty()) {
                 // 1. remove
@@ -147,11 +150,40 @@ public class GraphImplementation {
                 // 3. mark visited
                 visited.add(r);
                 // 4. self work
-                System.out.println(r);
+                System.out.print(r+" ");
                 // 5. Add neighbour which are unvisited
                 for (int neighbour : map.get(r).keySet()) {
                     if (!visited.contains(neighbour)) {
                         q.add(neighbour);
+                    }
+                }
+            }
+        }
+    }
+
+    public void DFT(){
+        Stack<Integer> stack = new Stack<>();
+        HashSet<Integer> visited = new HashSet<>();
+        for(int source: map.keySet()) {
+            if(visited.contains(source)){
+                continue;
+            }
+            stack.push(source);
+            while (!stack.isEmpty()){
+                // 1. remove
+                int r = stack.pop();   // remove first
+                // 2. Ignore if already visited
+                if(visited.contains(r)){
+                    continue;
+                }
+                // 3. mark visited
+                visited.add(r);
+                // 4. self work
+                System.out.print(r+" ");
+                // 5. Add neighbour which are unvisited
+                for(int neighbour: map.get(r).keySet()){
+                    if (!visited.contains(neighbour)){
+                        stack.push(neighbour);
                     }
                 }
             }
