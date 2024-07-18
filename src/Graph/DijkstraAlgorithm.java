@@ -65,7 +65,15 @@ public class DijkstraAlgorithm {
     }
 
     public static void main(String[] args) {
-        DijkstraAlgorithm da = new DijkstraAlgorithm(1);
+        DijkstraAlgorithm da = new DijkstraAlgorithm(7);
+        da.addEdge(1, 4, 6);
+        da.addEdge(1, 2, 10);
+        da.addEdge(2, 3, 7);
+        da.addEdge(3, 4, 5);
+        da.addEdge(4, 5, 1);
+        da.addEdge(5, 6, 4);
+        da.addEdge(7, 5, 2);
+        da.addEdge(6, 7, 3);
         da.Dijkstra();
     }
 }
