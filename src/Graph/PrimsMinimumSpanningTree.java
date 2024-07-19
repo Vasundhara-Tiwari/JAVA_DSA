@@ -17,7 +17,7 @@ public class PrimsMinimumSpanningTree {
 
         @Override
         public String toString() {
-            return "DijkstraPair{" +
+            return "PrimsMinimumSpanningTree{" +
                     "vertex=" + vertex +
                     ", acquiringVertex=" + acquiringVertex +
                     ", cost=" + cost +
