@@ -3,54 +3,48 @@ package Graph;
 import java.util.HashMap;
 
 public class DisjointSetUnion {
-
-    class Node {
-        int vtx;
-        Node parent;
+    class Node{
         int rank;
+        Node parent;
+        int data;
     }
 
-    private HashMap<Integer, Node> map = new HashMap<>();
+    HashMap<Integer, Node> map = new HashMap<>();
 
-    public void createSet(int v) {
-        Node node = new Node();
-        node.vtx = v;
-        node.parent = node;
-        node.rank = 0;
-        map.put(v, node);
-
+    public void createSet(int v){
+        Node nn = new Node();
+        nn.rank = 0;
+        nn.parent = nn;
+        nn.data = v;
+        map.put(v, nn);
     }
 
-    public int find(int v) {
-        Node rn = map.get(v);
-        return find(rn).vtx;
-
+    public int find(int v){
+        Node nn = map.get(v);
+        return find(nn).data;
     }
 
-    private Node find(Node rn) {
-        if (rn.parent == rn) {
-            return rn;
+    public Node find(Node nn){
+        if(nn.parent == nn){
+            return nn;
         }
-        Node ren = find(rn.parent);
-        rn.parent = ren;// path compression
-        return ren;
-
+        Node n = find(nn.parent);
+        nn.parent = n;      // path compression
+        return n;
     }
 
-    public void union(int e1, int e2) {
-        Node rv1 = map.get(e1);
-        Node rv2 = map.get(e2);
-        Node ren1 = find(rv1);
-        Node ren2 = find(rv2);
-        if (ren1.rank == ren2.rank) {
-            ren1.parent = ren2;
-            ren2.rank++;
-        } else if (ren1.rank > ren2.rank) {
-            ren2.parent = ren1;
+    public void union(int v1, int v2){
+        Node nn1 = map.get(v1);
+        Node nn2 = map.get(v2);
+        Node representativeNode1 = find(nn1);
+        Node representativeNode2 = find(nn2);
+        if(representativeNode1.rank == representativeNode2.rank){
+            representativeNode1.parent = representativeNode2;
+            representativeNode2.rank++;
+        } else if (representativeNode1.rank > representativeNode2.rank) {
+            representativeNode2.parent = representativeNode1;
         } else {
-            ren1.parent = ren2;
+            representativeNode1.parent = representativeNode2;
         }
-
     }
-
 }
