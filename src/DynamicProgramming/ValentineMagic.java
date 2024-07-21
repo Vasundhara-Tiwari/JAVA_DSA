@@ -11,7 +11,6 @@ public class ValentineMagic {
     }
     public static int minimum(int[] boys, int[] girls, int i, int j){
         if(i == boys.length){
-
             return 0;
         }
         if(j == girls.length){
