@@ -12,7 +12,7 @@ public class Disjoint_Set_Union {
 
     private HashMap<Integer, Node> map = new HashMap<>();
 
-    public void Create(int v) {
+    public void createSet(int v) {
         Node node = new Node();
         node.vtx = v;
         node.parent = node;

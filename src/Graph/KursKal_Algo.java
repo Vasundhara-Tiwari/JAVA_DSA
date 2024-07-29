@@ -19,13 +19,12 @@ public class KursKal_Algo {
 
     }
 
-    class EdegPair {
+    class EdgePair {
         int e1;
         int e2;
         int cost;
 
-        public EdegPair(int e1, int e2, int cost) {
-            // TODO Auto-generated constructor stub
+        public EdgePair(int e1, int e2, int cost) {
             this.e1 = e1;
             this.e2 = e2;
             this.cost = cost;
@@ -36,41 +35,43 @@ public class KursKal_Algo {
         }
     }
 
-    public List<EdegPair> GetALlEdge() {
-        List<EdegPair> ll = new ArrayList<>();
+    public List<EdgePair> GetAllEdge() {
+        List<EdgePair> ll = new ArrayList<>();
         for (int e1 : map.keySet()) {
             for (int e2 : map.get(e1).keySet()) {
                 int cost = map.get(e1).get(e2);
-                ll.add(new EdegPair(e1, e2, cost));
+                ll.add(new EdgePair(e1, e2, cost));
             }
         }
+        System.out.println(ll);
         return ll;
     }
 
     public void Kurskal() {
-        List<EdegPair> ll = GetALlEdge();
-        Collections.sort(ll, new Comparator<EdegPair>() {
-
+        List<EdgePair> ll = GetAllEdge();
+        Collections.sort(ll, new Comparator<EdgePair>() {
             @Override
-            public int compare(EdegPair o1, EdegPair o2) {
-                // TODO Auto-generated method stub
+            public int compare(EdgePair o1, EdgePair o2) {
                 return o1.cost - o2.cost;
             }
         });
         Disjoint_Set_Union dsu = new Disjoint_Set_Union();
         for (int v : map.keySet()) {
-            dsu.Create(v);
+            dsu.createSet(v);
         }
-        for (EdegPair e : ll) {
+        int sum  = 0;
+        for (EdgePair e : ll) {
             int re1 = dsu.find(e.e1);
             int re2 = dsu.find(e.e2);
             if (re1 == re2) {
                 // nothing
             } else {
                 dsu.Union(e.e1, e.e2);
+                sum += e.cost;
                 System.out.println(e);
             }
         }
+        System.out.println(sum);
     }
 
     public static void main(String[] args) {
