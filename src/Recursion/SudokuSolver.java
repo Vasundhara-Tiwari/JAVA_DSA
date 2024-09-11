@@ -29,7 +29,7 @@ public class SudokuSolver {
         }
     }
     public static boolean isSafe(int[][] grid, int row, int col, int val){
-        //row
+        //column
         for(int c = 0; c < grid[0].length; c++){
             if(grid[row][c] == val){
                 return false;
